@@ -1,0 +1,145 @@
+:root {
+  --mood-background-color: white;
+  --mood-text-color: black;  /* TODO: Consider the use of softer colors, eg. #222 for text */
+  --mood-important-text-color: #ccccff;
+  --top-div-first-min-width: 400px;
+  --top-div-middle-min-width: 360px;
+  --top-div-last-min-width: 480px;
+  /* Maybe add transitions as global var? */
+  /* It is a nice effect when buttons flash and others adjust, there should be multiple transitions...  */
+}
+
+body {
+  background-color: var(--mood-background-color);
+  color: var(--mood-text-color);
+  transition: background-color 2800ms cubic-bezier(0.39, 0.575, 0.565, 1), color 690ms ease-out;
+}
+
+#footer-area {
+  position: fixed;
+  font-size: 75%;
+  right: 12px;
+  bottom: 8px;
+  height: 20px;
+}
+
+message-important {
+  color: var(--mood-important-text-color);
+}
+
+message-fadeout {
+  opacity: 1;
+  animation: fadeTextInOut 12000ms ease-in forwards;
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes fadeTextInOut {
+  0% { opacity: 0.2; }
+  9% { opacity: 0.98; }
+  30% { opacity: 0.94; }
+  45% { opacity: 0.85; }
+  60% { opacity: 0.6; }
+  100% { opacity: 0; }
+}
+
+#screen {
+  min-width: 200px;
+  min-height: 300px;
+}
+
+.screen-area {
+  padding: 12px 12px 12px 12px; /* URDL */
+  background-color: rgba(150, 150, 200, 0.2);
+}
+
+
+.button {
+  background-color: Transparent;
+  color: var(--mood-text-color);
+  border: solid 1px var(--mood-text-color);
+  outline: none;
+  overflow: visible; /* TODO: set to hidden in final version */
+  margin: 9px 7px 9px 6.5px; /* URDL; exactly 17px grid spacing on Chrome. */
+  width: 160px;
+  height: 40px;
+  max-width: 60%;
+  max-height: auto;
+  /*transform: scale(1);*/
+  transition: color 10ms;
+  font-size: 0.9em
+}
+.button:hover {
+  color: #fff;
+  background-color: black;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+
+
+#new-game-button {
+  display: block;
+  margin: auto;
+  margin-top: 10vh;
+}
+
+#new-game-button:hover {
+  box-shadow: 0 0 3em #444
+}
+
+
+#main-title {
+  margin-top: 15vh;
+  text-align: center;
+}
+
+#main-title>img {
+  max-width: 60%;
+  height: auto;
+}
+
+.stats-wrapper {
+  display: flex;
+  min-width: 80em;
+}
+
+.stats {
+  min-width: 30em;
+}
+
+#story-container {
+  min-width: 45em;
+  max-width: 45em;
+  min-height: 20em;
+  max-height: 20em;
+  overflow: none;
+  line-height: 110%;
+  font-weight: 700;
+}
+
+.story-text {
+  font-weight: 500;
+  margin: 0 0 1em 0;
+  animation: fadeIn 900ms;
+}
+
+div {
+  display: block;
+  min-height: 1.2em;
+  animation: fadeIn 1800ms;
+}
+
+pre {
+  display: inline
+}

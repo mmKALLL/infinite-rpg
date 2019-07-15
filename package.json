@@ -1,0 +1,22 @@
+{
+  "name": "infinite-rpg",
+  "version": "0.1",
+  "private": true,
+
+  "eslintConfig": {
+
+    "env": {
+      "browser": true
+    },
+
+    "globals": {
+      "wjs": true
+    },
+
+    "rules": {
+      "quotes": ["warn", "double"],
+      "semi": "warn",
+      "padded-blocks": "off"
+    }
+  }
+}
