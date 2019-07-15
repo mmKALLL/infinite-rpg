@@ -89,7 +89,7 @@
 
   function generateQuest() {
     const questName = generateQuestName()
-    const maxHP = Math.floor(7 + Math.pow(gs.questsDone, 1.2) * (0.12 + Math.random()) * 14)
+    const maxHP = Math.floor(7 + Math.pow(gs.questsDone, 1.4) * (0.12 + Math.random()) * 22)
     const attack = Math.floor(3 + Math.pow(gs.questsDone, 1.2) * (0.1 + Math.random()) * 5.8)
     const defense = Math.floor(1 + Math.pow(gs.questsDone, 0.9) * (0.05 + Math.random()) * 1.1)
     return {
