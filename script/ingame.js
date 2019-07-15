@@ -79,7 +79,7 @@
     gs.state = 'none'
     gs.currentActionDone = 0
     gs.currentActionMax = 1
-    if (gs.quest.name === 'none' || gs.frames - gs.quest.startTime > 200) {
+    if (gs.quest.name === 'none' || gs.frames - gs.quest.startTime > 130) {
       gs.quest = generateQuest()
       addStoryText(`${gs.quest.name}を受けました`)
     } else {
@@ -110,16 +110,16 @@
   }
 
   function generateEquipment(attack, defense) {
-    const trueAttack = Math.max(1, attack - Math.pow(gs.questsDone, 0.7) * 1.0)
-    const trueDefense = Math.max(1, defense - Math.pow(gs.questsDone, 0.3) * 0.)
+    const trueAttack = Math.max(1, attack - Math.pow(gs.questsDone, 0.9) * 1.0)
+    const trueDefense = Math.max(1, defense - Math.pow(gs.questsDone, 0.3) * 0.1)
 
-    const adjectives = ['ボロい', '普通の', '綺麗な', '丈夫な', '切れやすい', '素晴らしい', 'マスターワークの', '伝説的な']
+    const adjectives = ['ボロい', '普通の', '綺麗な', '使いやすい', '丈夫な', '素晴らしい', '貴重な', 'マスターワークの', '伝説的な']
     const weapons = ['枝', '竹刀', 'ナイフ', '斧', '刀', '剣', '政宗', 'エクスカリバー']
     const armors = ['服', 'スーツ', 'レザーアーマー', 'チェインメール', 'プレートメール', '甲冑']
 
 
-    const weaponLevel = capIndexToArray(adjectives, (Math.random() + (Math.pow(trueAttack / 10, 0.2))) * Math.random() * adjectives.length)
-    const weaponIndex = capIndexToArray(weapons, trueAttack / (Math.pow(weaponLevel + 1, 0.9)) * (0.3 + Math.random()))
+    const weaponLevel = capIndexToArray(adjectives, (Math.random() + (Math.pow(trueAttack / 100, 0.5))) * Math.random() * adjectives.length)
+    const weaponIndex = capIndexToArray(weapons, trueAttack / (Math.pow(weaponLevel + 2, 0.9)) * (0.3 + Math.random()))
     const weaponAttack = Math.ceil(Math.pow((weaponLevel + 1), 1.0) * Math.pow((weaponIndex + 1), 2.3))
 
     const armorLevel = capIndexToArray(adjectives, (Math.random() + 0.1) * Math.random() * adjectives.length)
@@ -265,7 +265,7 @@
 
   // Game ends due to HP reaching 0
   function gameOver() {
-    window.alert(`ゲームオーバーです。あなたは人生で${gs.gold}円の価値を得られました。ご苦労様です。よく頑張ったね。また遊びに来てください。\n\nMade by Studio Esagames, 2019.`)
+    window.alert(`ゲームオーバーです。あなたは人生で${gs.gold}円の価値を得られました。ご苦労様です。よく頑張ったね。また遊びに来てください。`)
     window.location.replace('./index.html')
   }
 
