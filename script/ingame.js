@@ -118,7 +118,7 @@
     const armors = ['服', 'スーツ', 'レザーアーマー', 'チェインメール', 'プレートメール', '甲冑']
 
 
-    const weaponLevel = capIndexToArray(adjectives, (Math.random() + (Math.pow(trueAttack, 0.4))) * Math.random() * adjectives.length)
+    const weaponLevel = capIndexToArray(adjectives, (Math.random() + (Math.pow(trueAttack / 10, 0.2))) * Math.random() * adjectives.length)
     const weaponIndex = capIndexToArray(weapons, trueAttack / (Math.pow(weaponLevel + 1, 0.9)) * (0.3 + Math.random()))
     const weaponAttack = Math.ceil(Math.pow((weaponLevel + 1), 1.0) * Math.pow((weaponIndex + 1), 2.3))
 
@@ -160,7 +160,7 @@
     gs.questsDone += 1
     gs.state = 'none'
     getQuestEquipment(gs.quest.equipment)
-    addStoryText(`大変恐ろしい敵を倒して${xpGained}XPをもらった\nこれで${gs.quest.name}をクリアして、\n敵の${equipmentToNames(gs.quest.equipment)}を持って帰りました`)
+    addStoryText(`大変恐ろしい敵を倒して${xpGained}XPをもらった\n敵の${equipmentToNames(gs.quest.equipment)}を持って帰りました`)
     gs.quest.name = 'none'
   }
 
