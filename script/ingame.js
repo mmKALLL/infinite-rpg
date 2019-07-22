@@ -89,7 +89,7 @@
 
   function generateQuest() {
     const questName = generateQuestName()
-    const maxHP = Math.floor(7 + Math.pow(gs.questsDone, 1.4) * (0.12 + Math.random()) * 22)
+    const maxHP = Math.floor(7 + Math.pow(gs.questsDone, 1.35) * (0.12 + Math.random()) * 16)
     const attack = Math.floor(3 + Math.pow(gs.questsDone, 1.2) * (0.1 + Math.random()) * 5.8)
     const defense = Math.floor(1 + Math.pow(gs.questsDone, 0.9) * (0.05 + Math.random()) * 1.1)
     return {
@@ -110,7 +110,7 @@
   }
 
   function generateEquipment(attack, defense) {
-    const trueAttack = Math.max(1, attack - Math.pow(gs.questsDone, 0.9) * 1.0)
+    const trueAttack = Math.max(1, attack - Math.pow(gs.questsDone, 1.1) * 1.6)
     const trueDefense = Math.max(1, defense - Math.pow(gs.questsDone, 0.3) * 0.1)
 
     const adjectives = ['ボロい', '普通の', '綺麗な', '使いやすい', '丈夫な', '素晴らしい', '貴重な', 'マスターワークの', '伝説的な']
@@ -271,7 +271,7 @@
 
   // Game ends because of all goals being achieved
   function endGame() {
-    window.alert('一筆啓上い致し候\n\nあなたは町の皆様を救って大変明朗的な人間です。この冒険の伝説はいつまでもお祝いしましょう。あなたほど努力のある方は人生に見たことがない。あなたは素晴らしい。あなたを愛している。大変お疲れ様でした。これからも続くことはできますが、そろそろ休憩しましょう。僕のゲームをここまで楽しんでいただいて、恐悦至極に存じます。\n\n興味があればゲームと人生のことを話しましょう。mmKALLLで検索すれば見つかります。\n\nエサより')
+    window.alert('一筆啓上い致し候\n\nあなたは町の皆様を救って大変明朗的な人間です。この冒険の伝説はいつまでもお祝いしましょう。\n\nあなたほど努力のある方は人生に見たことがない。あなたは素晴らしい。あなたを愛している。大変お疲れ様でした。これからも続くことはできますが、そろそろ休憩しましょう。\n\n僕のゲームをここまで楽しんでいただいて、恐悦至極に存じます。\n\n御興味があれば、ゲームと人生のことを話しましょう。フィンランド人だけど日本語は喋れます。\nmmKALLLで検索すれば見つかります。\n\n引き続き、何卒宜しくお願い致します。\n\nエサより')
   }
 
   function addStoryText(text) {
