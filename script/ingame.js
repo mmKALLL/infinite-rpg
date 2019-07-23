@@ -1,5 +1,7 @@
 
 (function () {
+  const FPS = 100
+
   let gs = {
     level: 1,
     xp: 0,
@@ -19,8 +21,8 @@
     get xpToNextLevel() { return Math.floor(99 + gs.level * gs.level * 1.5001) },
     get attack() { return gs.level + gs.equipment.weapon.power },
     get defense() { return Math.floor(gs.level * 0.2 + gs.equipment.armor.power) },
-    get maxHP() { return Math.floor(15 + Math.pow(gs.level, 1.3) * 5) },
-    HP: 20,
+    get maxHP() { return Math.floor(25 + Math.pow(gs.level, 1.3) * 5) },
+    HP: 30,
 
     frames: 0,
     state: 'none',
@@ -46,7 +48,7 @@
   function startTraining() {
     gs.state = 'training'
     gs.currentActionDone = 0
-    gs.currentActionMax = (2.4 - 0.17 * Math.pow(Math.min(110, gs.level + 10), 0.5)) * 10 // 10 = 1s
+    gs.currentActionMax = (2.4 - 0.17 * Math.pow(Math.min(110, gs.level + 10), 0.5)) * FPS // 1 * FPS frames = 1s
   }
   document.getElementById("train-button").addEventListener("click", startTraining);
 
@@ -70,7 +72,7 @@
   function startGettingQuest() {
     gs.state = 'get-quest'
     gs.currentActionDone = 0
-    gs.currentActionMax = (0.5 + (0.13 * gs.questsDone * Math.random())) * 10 // 10 = 1s
+    gs.currentActionMax = (0.5 + (0.13 * gs.questsDone * Math.random())) * FPS // 1 * FPS frames = 1s
     addStoryText(`町のクエスト看板へ向かった、何かあるかな・・・`)
   }
   document.getElementById("quest-button").addEventListener("click", startGettingQuest);
@@ -79,7 +81,7 @@
     gs.state = 'none'
     gs.currentActionDone = 0
     gs.currentActionMax = 1
-    if (gs.quest.name === 'none' || gs.frames - gs.quest.startTime > 130) {
+    if (gs.quest.name === 'none' || gs.frames - gs.quest.startTime > 13 * FPS) {
       gs.quest = generateQuest()
       addStoryText(`${gs.quest.name}を受けました`)
     } else {
@@ -206,7 +208,9 @@
 
   function update() {
     gs.frames += 1
-    if (gs.frames % 10 === 0) {
+    draw()
+
+    if (gs.frames % (1 * FPS) === 0) {
       gs.HP = Math.min(gs.maxHP, Math.floor(gs.HP + gs.maxHP / 20))
     }
 
@@ -217,7 +221,7 @@
       }
     }
 
-    if (gs.state === 'adventure' && gs.quest.name !== 'none') {
+    if (gs.state === 'adventure' && gs.quest.name !== 'none' && gs.frames % (0.05 * FPS) === 0) { // 10 attacks / sec
       gs.HP -= Math.ceil(gs.quest.boss.attack / gs.defense)
       gs.quest.boss.HP -= Math.ceil(gs.attack / gs.quest.boss.defense)
       if (gs.quest.boss.HP <= 0) {
@@ -241,11 +245,9 @@
       clearInterval(updateInterval)
       gameOver()
     }
-
   }
 
-  const updateInterval = setInterval(update, 100)
-  setInterval(draw, 10)
+  const updateInterval = setInterval(update, 1000 / FPS)
   startGame()
 
   function levelUp() {
