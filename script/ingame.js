@@ -81,7 +81,7 @@
     gs.state = 'none'
     gs.currentActionDone = 0
     gs.currentActionMax = 1
-    if (gs.quest.name === 'none' || gs.frames - gs.quest.startTime > 13 * FPS) {
+    if (gs.quest.name === 'none' || gs.frames - gs.quest.startTime > 11 * FPS) {
       gs.quest = generateQuest()
       addStoryText(`${gs.quest.name}を受けました`)
     } else {
@@ -91,7 +91,7 @@
 
   function generateQuest() {
     const questName = generateQuestName()
-    const maxHP = Math.floor(7 + Math.pow(gs.questsDone, 1.35) * (0.12 + Math.random()) * 16)
+    const maxHP = Math.floor(7 + Math.pow(gs.questsDone, 1.32) * (0.12 + Math.random()) * 16)
     const attack = Math.floor(3 + Math.pow(gs.questsDone, 1.2) * (0.1 + Math.random()) * 5.8)
     const defense = Math.floor(1 + Math.pow(gs.questsDone, 0.9) * (0.05 + Math.random()) * 1.1)
     return {
@@ -112,7 +112,7 @@
   }
 
   function generateEquipment(attack, defense) {
-    const trueAttack = Math.max(1, attack - Math.pow(gs.questsDone, 1.1) * 1.6)
+    const trueAttack = Math.max(1, attack - Math.pow(gs.questsDone, 1.05) * 1.8)
     const trueDefense = Math.max(1, defense - Math.pow(gs.questsDone, 0.3) * 0.1)
 
     const adjectives = ['ボロい', '普通の', '綺麗な', '使いやすい', '丈夫な', '素晴らしい', '貴重な', 'マスターワークの', '伝説的な']
@@ -120,9 +120,9 @@
     const armors = ['服', 'スーツ', 'レザーアーマー', 'チェインメール', 'プレートメール', '甲冑']
 
 
-    const weaponLevel = capIndexToArray(adjectives, (Math.random() + (Math.pow(trueAttack / 100, 0.5))) * Math.random() * adjectives.length)
-    const weaponIndex = capIndexToArray(weapons, trueAttack / (Math.pow(weaponLevel + 2, 0.9)) * (0.3 + Math.random()))
-    const weaponAttack = Math.ceil(Math.pow((weaponLevel + 1), 1.0) * Math.pow((weaponIndex + 1), 2.3))
+    const weaponLevel = capIndexToArray(adjectives, (Math.random() + 0.3) * Math.random() * adjectives.length)
+    const weaponIndex = capIndexToArray(weapons, trueAttack / (Math.pow(weaponLevel + 2, 1.1)) * (0.3 + Math.random()))
+    const weaponAttack = Math.ceil(Math.pow((weaponLevel + 1), 0.9) * Math.pow((weaponIndex + 1), 2.0))
 
     const armorLevel = capIndexToArray(adjectives, (Math.random() + 0.1) * Math.random() * adjectives.length)
     const armorIndex = capIndexToArray(armors, trueDefense / (Math.pow(armorLevel + 1, 0.5)) * (0.1 + Math.random()))
@@ -131,7 +131,7 @@
     const weaponName = `${adjectives[weaponLevel]}${weapons[weaponIndex]}`
     const armorName = `${adjectives[armorLevel]}${armors[armorIndex]}`
 
-    console.log(weaponName, weaponLevel, weaponIndex, weaponAttack, '\n' + armorName, armorLevel, armorIndex, armorDefense)
+    console.log(trueAttack, trueDefense, '\n' + weaponName, weaponLevel, weaponIndex, weaponAttack, '\n' + armorName, armorLevel, armorIndex, armorDefense)
     return {
       weapon: {
         power: weaponAttack,
