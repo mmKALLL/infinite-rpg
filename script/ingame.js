@@ -21,8 +21,8 @@
     get xpToNextLevel() { return Math.floor(99 + gs.level * gs.level * 1.5001) },
     get attack() { return gs.level + gs.equipment.weapon.power },
     get defense() { return Math.floor(gs.level * 0.2 + gs.equipment.armor.power) },
-    get maxHP() { return Math.floor(25 + Math.pow(gs.level, 1.3) * 5) },
-    HP: 30,
+    get maxHP() { return Math.floor(20 + Math.pow(gs.level, 1.3) * 5) },
+    HP: 25,
 
     frames: 0,
     state: 'none',
@@ -273,7 +273,7 @@
 
   // Game ends because of all goals being achieved
   function endGame() {
-    window.alert('一筆啓上い致し候\n\nあなたは町の皆様を救って大変明朗的な人間です。この冒険の伝説はいつまでもお祝いしましょう。\n\nあなたほど努力のある方は人生に見たことがない。あなたは素晴らしい。あなたを愛している。大変お疲れ様でした。これからも続くことはできますが、そろそろ休憩しましょう。\n\n僕のゲームをここまで楽しんでいただいて、恐悦至極に存じます。\n\n御興味があれば、ゲームと人生のことを話しましょう。フィンランド人だけど日本語は喋れます。\nmmKALLLで検索すれば見つかります。\n\n引き続き、何卒宜しくお願い致します。\n\nエサより')
+    window.alert('一筆啓上い致し候\n\nあなたは町の皆様を救って大変明朗的な人間です。この冒険の伝説はいつまでもお祝いしましょう。\n\nあなたほど努力のある方は人生に見たことがない。あなたは素晴らしい。あなたを愛している。大変お疲れ様でした。これからも続くことはできますが、そろそろ休憩しましょう。\n\n僕のゲームをここまで楽しんでいただいて、恐悦至極に存じます。\n\n御興味があれば、ゲームと人生のことを話しましょう。フィンランド人だけど日本語は喋れます。\nmmKALLLで検索すれば見つかります。\n\n引き続き、何卒宜しくお願い致します。\n\nエサより\n\nCleared in ' + gs.frames + ' frames.\n')
   }
 
   function addStoryText(text) {
